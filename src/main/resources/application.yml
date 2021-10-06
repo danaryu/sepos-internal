@@ -1,0 +1,17 @@
+# Database Connection Pool
+# DB Connection이 하나뿐이므로, Application.yml 설정파일에 단순 정의
+# Todo : 암호화 및 개발기/운영기 분리
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@10.253.33.79:1521:PARKING?useUnicode=true&characterEncoding=euckr
+    username: separk
+    password: em24park!
+    driver-class-name: oracle.jdbc.OracleDriver
+
+# Mybatis Configuration
+mybatis:
+  mapper-locations: mappers/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+#  type-aliases-package:
+
