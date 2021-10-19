@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sinc.sepos.internal.mapper.StoreMapper">
-    <select id="getStoreList" resultType="java.util.HashMap">
-        SELECT STRCD_HQ
+<mapper namespace="com.sinc.sepos.internal.mapper.ReportMapper">
+    <select id="getStoreNm" resultType="String">
+        SELECT STR_NM
+          FROM MT_STR
+         WHERE POS_STR_CODE = '4700'
+    </select>
+
+    <select id="findStrByPosStrCode" parameterType="String" resultType="StoreDTO">
+        SELECT POS_STR_CODE
+             , STR_CODE
              , STR_NM
-          FROM MT_STORE
+             , BIZTP_CODE
+             , STORE_TYPE
+             , SVR_IP_ADDR
+             , STR_X
+             , STR_Y
+             , STR_NEW_ADDR
+             , STR_OLD_ADDR
+             , STR_DTLS_ADDR
+             , STR_TANO
+             , STR_TENO
+             , STR_TSNO
+          FROM POS_STR_DETAIL
+         WHERE POS_STR_CODE = #{posStrCode}
     </select>
 </mapper>

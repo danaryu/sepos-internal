@@ -3,15 +3,24 @@
 # Todo : 암호화 및 개발기/운영기 분리
 spring:
   datasource:
-    url: jdbc:oracle:thin:@10.253.33.79:1521:PARKING?useUnicode=true&characterEncoding=euckr
-    username: separk
-    password: em24park!
+    #url: jdbc:oracle:thin:@10.150.252.50:1521:EORA
+    #username: sepos
+    #password: em24pos!
+    url: jdbc:oracle:thin:@10.253.33.79:1521:PARKING
+    username: if_pos
+#    username: separk
+    password: em24pos!
     driver-class-name: oracle.jdbc.OracleDriver
+
+# Server Configuration
+server:
+  port: 8081
 
 # Mybatis Configuration
 mybatis:
   mapper-locations: mappers/**/*.xml
+  type-aliases-package: com.sinc.sepos.internal.dto
   configuration:
     map-underscore-to-camel-case: true
-#  type-aliases-package:
+    # DTO type aliases
 
