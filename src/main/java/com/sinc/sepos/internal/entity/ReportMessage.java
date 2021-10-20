@@ -1,25 +1,21 @@
 package com.sinc.sepos.internal.entity;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.time.LocalDateTime;
 
 @Getter
-@ToString
+@Setter
 @NoArgsConstructor
-// @AllArgsConstructor // test코드 작성을 위해 추가
-public class Store {
-
-    // pos점포코드
-    private String posStrCode;
-    // 영업점포코드
-    private String strCode;
+@ToString
+public class ReportMessage {
     // 점포명
     private String strNm;
-    // 업태코드
-    private String biztpCode;
     // 점포구분 05: Nobrand
     private String storeType;
-    // 서버 IP
-    private String svrIpAddr;
     // 점포 X좌표
     private String strX;
     // 점포 Y좌표
@@ -32,13 +28,9 @@ public class Store {
     private String strDtlsAddr;
     // 점포 전화번호
     private String strTelNo;
-/*
-    // 점포 전화번호 (지역)
-    private String strTano;
-    // 점포 전화번호
-    private String strTeno;
-    // 점포 전화번호
-    private String strTsno;
-*/
-
+    //신고 내용
+    private String rptCnts;
+    /*//신고 일시
+    private LocalDateTime strSendDm = LocalDateTime.now();
+    */
 }

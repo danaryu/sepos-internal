@@ -2,6 +2,7 @@ package com.sinc.sepos.internal.controller;
 
 import com.sinc.sepos.internal.dto.PosInfoDTO;
 import com.sinc.sepos.internal.dto.StoreDTO;
+import com.sinc.sepos.internal.entity.ReportMessage;
 import com.sinc.sepos.internal.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,7 @@ public class ReportController {
 
     private final RestTemplate restTemplate;
     private final ReportService reportService;
+    /* private final ReportToExt reportToExt; */
 
     @ResponseBody
     @PostMapping("/knpa/report")
@@ -40,9 +42,14 @@ public class ReportController {
 
         /* 점포코드에 해당하는 주소조회 */
         StoreDTO storeDTO = reportService.findStrByPosStrCode(posInfoDTO.getPosStrCode());
-        System.out.println("storeDTO = " + storeDTO.toString());
+
+        ReportMessage reportMessage = reportService.makeReport(storeDTO);
+        // System.out.println("storeDTO = " + store.toString());
+
+        /* StoreDTO 기반 ReportDTO 생성 */
 
         /* 외부망 호출 */
+        // reportToExt.report(restTemplate, storeService.report(store));
 
 
         /* 응답 */

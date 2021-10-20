@@ -19,8 +19,6 @@ server:
 # Mybatis Configuration
 mybatis:
   mapper-locations: mappers/**/*.xml
-  type-aliases-package: com.sinc.sepos.internal.dto
+  type-aliases-package: com.sinc.sepos.internal.entity
   configuration:
     map-underscore-to-camel-case: true
-    # DTO type aliases
-

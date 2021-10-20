@@ -1,19 +1,16 @@
 package com.sinc.sepos.internal;
 
 import com.sinc.sepos.internal.entity.Store;
-import com.sinc.sepos.internal.service.StoreService;
+import com.sinc.sepos.internal.service.ReportService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.HashMap;
-import java.util.List;
-
 @SpringBootTest
-public class StoreServiceTest {
+public class ReportServiceTest {
 
     @Autowired
-    StoreService storeService;
+    ReportService reportService;
 
     @Test
     void getStoreList_TEST() throws Exception {
@@ -27,7 +24,7 @@ public class StoreServiceTest {
 
     @Test
     void getStoreInfo_TEST() throws Exception {
-        Store store = storeService.getStoreInfo();
+        Store store = reportService.getStoreInfo();
         System.out.println("storeDTO.toString() = " + store.toString());
     }
 

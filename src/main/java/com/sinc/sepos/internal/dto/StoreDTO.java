@@ -1,12 +1,15 @@
-package com.sinc.sepos.internal.entity;
+package com.sinc.sepos.internal.dto;
 
+import com.sinc.sepos.internal.entity.Store;
 import lombok.*;
 
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
-// @AllArgsConstructor // test코드 작성을 위해 추가
-public class Store {
+public class StoreDTO {
+
+    // TODO table 컬럼명 바꿔야함.. str도있고 store도 있고
 
     // pos점포코드
     private String posStrCode;
@@ -32,7 +35,8 @@ public class Store {
     private String strDtlsAddr;
     // 점포 전화번호
     private String strTelNo;
-/*
+    /*
+
     // 점포 전화번호 (지역)
     private String strTano;
     // 점포 전화번호

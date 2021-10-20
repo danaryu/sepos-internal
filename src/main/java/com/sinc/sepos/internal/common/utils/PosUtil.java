@@ -31,7 +31,4 @@ public class PosUtil {
         return returnString;
     }
 
-
-
-
 }

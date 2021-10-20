@@ -1,6 +1,6 @@
 package com.sinc.sepos.internal;
 
-import com.sinc.sepos.internal.mapper.ReportMapper;
+import com.sinc.sepos.internal.mapper.sqlmapper.StoreMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +27,7 @@ public class DBConnectionTest {
         StoreService storeService;
     */
     @Autowired
-    ReportMapper reportMapper;
+    StoreMapper storeMapper;
 
     @Test
     public void DB_커넥션_Test() throws ClassNotFoundException {
@@ -43,10 +43,11 @@ public class DBConnectionTest {
         }
     }
 
+/*
     @Test
     public void 한글출력() throws UnsupportedEncodingException {
         //String word = "한글이 잘 출력되면 좋겠다 ㅜㅜ.";
-        String word = reportMapper.getStoreNm();
+        // String word = storeMapper.getStoreNm();
 
         System.out.println("word = " + word);
 
@@ -76,6 +77,7 @@ public class DBConnectionTest {
         System.out.println("x-windows-949 -> iso-8859-1 : " + new String(word.getBytes("x-windows-949"), "iso-8859-1"));
 
     }
+*/
 
 
 }

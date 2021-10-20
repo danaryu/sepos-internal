@@ -22,15 +22,18 @@ repositories {
 dependencies {
 	implementation files('libs/ojdbc6.jar')
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	// validation
+	// Spring Boot Validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	// json simple
+	// JSONsimple
 	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
     implementation 'junit:junit:4.13.1'
+	implementation "org.mapstruct:mapstruct:1.4.1.Final"
 	compileOnly 'org.projectlombok:lombok'
-	//runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+	// runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
 	annotationProcessor 'org.projectlombok:lombok'
+	// MapStruct
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.1.Final'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
