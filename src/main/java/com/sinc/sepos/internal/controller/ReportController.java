@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.validation.Valid;
+
 @Slf4j
 @RequiredArgsConstructor
 @RestController
@@ -28,19 +30,22 @@ public class ReportController {
 
     @ResponseBody
     @PostMapping("/knpa/report")
-    public ResponseEntity<String> reportToExt(@RequestBody PosInfoDTO posInfoDTO) {
-        // POS서버 -> 내부망
+    public ResponseEntity reportToExt(@RequestBody @Valid PosInfoDTO posInfoDTO) {
+
+        /* POS서버 -> 내부망 */
         System.out.println("posInfoDTO.toString() = " + posInfoDTO.toString());
         // log.debug("posInfoDTO.toString()" + posInfoDTO.toString());
 
-        // 점포코드에 해당하는 주소조회
+        /* log 저장 */
+
+        /* 점포코드에 해당하는 주소조회 */
         StoreDTO storeDTO = reportService.findStrByPosStrCode(posInfoDTO.getPosStrCode());
         System.out.println("storeDTO = " + storeDTO.toString());
 
-        // 외부망 호출
-        
+        /* 외부망 호출 */
 
-        // 응답
+
+        /* 응답 */
         return new ResponseEntity("hello", HttpStatus.OK);
     }
 
