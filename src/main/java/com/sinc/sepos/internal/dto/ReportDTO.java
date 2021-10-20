@@ -1,4 +1,4 @@
-package com.sinc.sepos.internal.dto;
+package com.sinc.sepos.internal.domain;
 
-public class ReportDTO {
+public class Report {
 }
