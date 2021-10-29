@@ -1,5 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sinc.sepos.internal.mapper.sqlmapper.LogMapper">
-
+    <insert id="insertReportLog" parameterType="ReportLog">
+        INSERT INTO POS_WORK_LOG
+        (
+              BIZ_DATE
+            , POS_STR_CODE
+            , POS_NO
+            , POS_RCV_IP
+            , WORK_SEQ
+            , SEND_DT
+            , SEND_MSG
+            , SEND_STAT
+            , CRTN_DT
+            , CRTN_ID
+            , CHG_DT
+            , CHG_ID
+        )
+        VALUES
+        (
+              #{bizDate}
+            , #{posStrCode}
+            , #{posNo}
+            , #{posRcvIp}
+            , #{workSeq}
+            , #{sendDt}
+            , #{sendMsg}
+            , #{sendStat}
+            , SYSDATE
+            , #{crtnId}
+            , SYSDATE
+            , #{chgId}
+        )
+    </insert>
 </mapper>
+
+<!--        INSERT INTO OT_TRCV_LOG-->
+<!--        ( STRCD-->
+<!--        , EQPT_ID-->
+<!--        , TRCVID-->
+<!--        , TRCV_DTTM-->
+<!--        , TRCV_TYPE-->
+<!--        , TRCV_DATA-->
+<!--        , CR_DTTM-->
+<!--        , CR_USERID-->
+<!--        , MOD_DTTM-->
+<!--        , MOD_USERID-->
+<!--        )-->
+<!--        VALUES-->
+<!--        ( GET_STORECD(#{strcd})-->
+<!--        , #{eqptId}-->
+<!--        , #{trcvid}-->
+<!--        , TO_CHAR(SYSDATE, 'yyyyMMddhh24miss')-->
+<!--        , #{trcvType}-->
+<!--        , #{trcvData}-->
+<!--        , SYSDATE-->
+<!--        , #{crUserid}-->
+<!--        , SYSDATE, #{modUserid}-->
+<!--        )-->

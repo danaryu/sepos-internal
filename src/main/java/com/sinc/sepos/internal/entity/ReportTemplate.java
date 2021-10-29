@@ -10,8 +10,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ReportTemplate {
-
     private String msgCode;
     private String reportCnts;
-
 }

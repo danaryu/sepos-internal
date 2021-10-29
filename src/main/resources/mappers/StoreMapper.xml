@@ -12,7 +12,7 @@
              , STR_CODE
              , STR_NM
              , BIZTP_CODE
-             , STORE_TYPE
+             , STR_TYPE
              , SVR_IP_ADDR
              , STR_X
              , STR_Y

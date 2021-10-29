@@ -5,8 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface StoreMapper {
-
     Store getStoreInfo();
     Store findStrByPosStrCode(String posStrCode);
-
 }

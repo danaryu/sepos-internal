@@ -1,0 +1,11 @@
+report:
+  create-id:
+    request: makeRequestReport
+    response: makeResponseReport
+  send-stat:
+    request: N
+    response: Y
+    error: E
+  change-id:
+    request: makeRequestReport
+    response: makeResponseReport

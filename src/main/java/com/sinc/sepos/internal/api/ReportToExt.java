@@ -1,10 +1,5 @@
 package com.sinc.sepos.internal.api;
 
-import com.sinc.sepos.internal.dto.ReportDTO;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-
 public class ReportToExt {
 /*
 

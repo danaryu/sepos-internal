@@ -7,8 +7,6 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface StoreDTOMapper {
-
     StoreDTOMapper INSTANCE = Mappers.getMapper(StoreDTOMapper.class);
     StoreDTO toDTO(Store store);
-
 }

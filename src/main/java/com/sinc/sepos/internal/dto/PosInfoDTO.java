@@ -20,4 +20,8 @@ public class PosInfoDTO {
     @JsonProperty("pos_no")
     private final String posNo;
 
+    @NotBlank(message = "pos_ip는 빈 값 일 수 없습니다.")
+    @JsonProperty("pos_ip")
+    private final String posRcvIp;
+
 }

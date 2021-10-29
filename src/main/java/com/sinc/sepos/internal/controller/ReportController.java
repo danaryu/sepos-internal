@@ -1,8 +1,8 @@
 package com.sinc.sepos.internal.controller;
 
-import com.sinc.sepos.internal.dto.PosInfoDTO;
-import com.sinc.sepos.internal.dto.StoreDTO;
-import com.sinc.sepos.internal.entity.ReportMessage;
+import com.sinc.sepos.internal.configuration.ConstantsConfiguration;
+import com.sinc.sepos.internal.dto.*;
+import com.sinc.sepos.internal.service.LogService;
 import com.sinc.sepos.internal.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
+import java.lang.invoke.ConstantBootstraps;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -28,6 +31,9 @@ public class ReportController {
 
     private final RestTemplate restTemplate;
     private final ReportService reportService;
+    private final LogService logService;
+    private final ConstantsConfiguration constConfig;
+
     /* private final ReportToExt reportToExt; */
 
     @ResponseBody
@@ -38,22 +44,59 @@ public class ReportController {
         System.out.println("posInfoDTO.toString() = " + posInfoDTO.toString());
         // log.debug("posInfoDTO.toString()" + posInfoDTO.toString());
 
-        /* log 저장 */
-
         /* 점포코드에 해당하는 주소조회 */
         StoreDTO storeDTO = reportService.findStrByPosStrCode(posInfoDTO.getPosStrCode());
 
-        ReportMessage reportMessage = reportService.makeReport(storeDTO);
-        // System.out.println("storeDTO = " + store.toString());
+        /* Report 생성 */
+        ReportMessageDTO reportMessageDTO = reportService.makeReport(storeDTO);
 
-        /* StoreDTO 기반 ReportDTO 생성 */
+        /* 요청 log 저장 */
+        ReportLogDTO requestLog = makeRequestLog(posInfoDTO, reportMessageDTO);
+        logService.insertReportLog(requestLog);
 
-        /* 외부망 호출 */
+        /* Report 외부망 호출 */
         // reportToExt.report(restTemplate, storeService.report(store));
 
 
-        /* 응답 */
+        /* 응답 log 저장 */
+
         return new ResponseEntity("hello", HttpStatus.OK);
+    }
+
+    /**
+     * 신고 요청에 대한 Log를 생성한다.
+     *
+     *   sequence 번호 생성 POS점포코드 + POS번호 + localDateTime
+     *   외부망 전송상태 SEND_STAT = 'N'
+     *
+     * @param posInfoDTO
+     * @return
+     */
+
+    private ReportLogDTO makeRequestLog(PosInfoDTO posInfoDTO, ReportMessageDTO reportMessageDTO) {
+        String localDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHss"));
+        String workSequence = new StringBuilder(posInfoDTO.getPosStrCode())
+                .append(posInfoDTO.getPosNo())
+                .append(localDateTime)
+                .toString();
+
+        String bizDate = localDateTime.substring(0, 8);
+
+        ReportLogDTO reportLogDTO = new ReportLogDTO();
+        reportLogDTO.setBizDate(bizDate);
+        reportLogDTO.setPosStrCode(posInfoDTO.getPosStrCode());
+        reportLogDTO.setPosNo(posInfoDTO.getPosNo());
+        reportLogDTO.setPosRcvIp(posInfoDTO.getPosRcvIp());
+        reportLogDTO.setWorkSeq(workSequence);
+
+        reportLogDTO.setSendMsg(reportMessageDTO.toString());
+        reportLogDTO.setSendStat(constConfig.getRequestSendStat());
+        reportLogDTO.setSendDt(localDateTime);
+
+        reportLogDTO.setCrtnId(constConfig.getRequestCreateId());
+        reportLogDTO.setChgId(constConfig.getRequestChangeId());
+
+        return reportLogDTO;
     }
 
 

@@ -1,4 +1,4 @@
-package com.sinc.sepos.internal.entity;
+package com.sinc.sepos.internal.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -6,16 +6,18 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public class ReportMessage {
+public class ReportMessageDTO {
     // 점포명
     private String strNm;
     // 점포구분 05: Nobrand
-    private String storeType;
+    private String strType;
     // 점포 X좌표
     private String strX;
     // 점포 Y좌표
@@ -30,7 +32,7 @@ public class ReportMessage {
     private String strTelNo;
     //신고 내용
     private String rptCnts;
-    /*//신고 일시
-    private LocalDateTime strSendDm = LocalDateTime.now();
-    */
+    //신고 일시
+    private String strSendDm = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 }
+

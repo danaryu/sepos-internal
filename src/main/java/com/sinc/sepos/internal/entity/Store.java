@@ -7,7 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 // @AllArgsConstructor // test코드 작성을 위해 추가
 public class Store {
-
     // pos점포코드
     private String posStrCode;
     // 영업점포코드
@@ -17,7 +16,7 @@ public class Store {
     // 업태코드
     private String biztpCode;
     // 점포구분 05: Nobrand
-    private String storeType;
+    private String strType;
     // 서버 IP
     private String svrIpAddr;
     // 점포 X좌표
@@ -40,5 +39,4 @@ public class Store {
     // 점포 전화번호
     private String strTsno;
 */
-
 }
