@@ -6,5 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface LogMapper {
-    void insertReportLog(ReportLog log);
+    void insertRequestLog(ReportLog log);
+    void updateResponseLog(ReportLog log);
 }

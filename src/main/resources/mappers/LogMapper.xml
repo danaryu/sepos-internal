@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sinc.sepos.internal.mapper.sqlmapper.LogMapper">
-    <insert id="insertReportLog" parameterType="ReportLog">
+    <insert id="insertRequestLog" parameterType="ReportLog">
         INSERT INTO POS_WORK_LOG
         (
               BIZ_DATE
@@ -33,6 +33,21 @@
             , #{chgId}
         )
     </insert>
+
+    <update id="updateResponseLog" parameterType="ReportLog">
+        UPDATE POS_WORK_LOG
+          SET RES_DT = #{resDt}
+            , RES_CD = #{resCd}
+            , RES_MSG = #{resMsg}
+            , RES_STAT = #{resStat}
+            , SEND_STAT = #{sendStat}
+            , CHG_DT = SYSDATE
+            , CHG_ID = #{chgId}
+        WHERE BIZ_DATE = #{bizDate}
+          AND POS_STR_CODE = #{posStrCode}
+          AND POS_NO = #{posNo}
+          AND WORK_SEQ = #{workSeq}
+    </update>
 </mapper>
 
 <!--        INSERT INTO OT_TRCV_LOG-->

@@ -23,9 +23,12 @@ public class ReportLog {
     private String resDt;
     private String resMsg;
     private String resCd;
+    private String resStat;
 
+    /*
     private String errCd;
-    private String errCnt;
+    private String errMsg;
+*/
 
     private String sendDt;
     private String sendMsg;

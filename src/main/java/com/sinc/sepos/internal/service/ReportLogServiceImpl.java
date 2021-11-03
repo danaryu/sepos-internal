@@ -1,6 +1,6 @@
 package com.sinc.sepos.internal.service;
 
-import com.sinc.sepos.internal.common.utils.PosUtil;
+import com.sinc.sepos.internal.common.adapter.EncodingAdapter;
 import com.sinc.sepos.internal.dto.ReportLogDTO;
 import com.sinc.sepos.internal.entity.ReportLog;
 import com.sinc.sepos.internal.mapper.dtomapper.ReportLogDTOMapper;
@@ -15,29 +15,18 @@ import java.io.UnsupportedEncodingException;
 public class ReportLogServiceImpl implements LogService {
 
     private final LogMapper logMapper;
+    private final EncodingAdapter encodingAdapter;
 
     @Override
-    public void insertReportLog(ReportLogDTO reportLogDTO) {
-        try {
-            reportLogDTO = encodingRequestLog(reportLogDTO);
-        } catch(Exception e) {
-            // TODO Exception logic
-            System.out.println("e.getMessage() = " + e.getMessage());
-        }
-        ReportLog reportLog = ReportLogDTOMapper.INSTANCE.toEntity(reportLogDTO);
-        logMapper.insertReportLog(reportLog);
+    public void insertRequestLog(ReportLogDTO reportLogDTO) throws UnsupportedEncodingException {
+        ReportLog reportLog = ReportLogDTOMapper.INSTANCE.toEntity(encodingAdapter.encodingRequestLog(reportLogDTO));
+        logMapper.insertRequestLog(reportLog);
     }
 
-    /**
-     * reportLogDTO를 encoding한다.
-     * @param reportLogDTO
-     * @return
-     * @throws UnsupportedEncodingException
-     */
-
-    public ReportLogDTO encodingRequestLog(ReportLogDTO reportLogDTO) throws UnsupportedEncodingException {
-        reportLogDTO.setSendMsg(PosUtil.EncodingToEN(reportLogDTO.getSendMsg()));
-        return reportLogDTO;
+    @Override
+    public void updateResponseLog(ReportLogDTO reportLogDTO) throws UnsupportedEncodingException {
+        ReportLog reportLog = ReportLogDTOMapper.INSTANCE.toEntity(encodingAdapter.encodingResponseLog(reportLogDTO));
+        logMapper.updateResponseLog(reportLog);
     }
 
 }
