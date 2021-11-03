@@ -31,12 +31,4 @@ public class Store {
     private String strDtlsAddr;
     // 점포 전화번호
     private String strTelNo;
-/*
-    // 점포 전화번호 (지역)
-    private String strTano;
-    // 점포 전화번호
-    private String strTeno;
-    // 점포 전화번호
-    private String strTsno;
-*/
 }

@@ -7,7 +7,6 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 public class StoreDTO {
-
     // TODO table 컬럼명 바꿔야함.. str도있고 store도 있고
     // pos점포코드
     private String posStrCode;

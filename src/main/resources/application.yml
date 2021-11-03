@@ -22,3 +22,8 @@ mybatis:
   type-aliases-package: com.sinc.sepos.internal.entity
   configuration:
     map-underscore-to-camel-case: true
+
+# Spring Retry Configuration
+retry:
+  maxAttempts: 3
+  maxDelay : 1000

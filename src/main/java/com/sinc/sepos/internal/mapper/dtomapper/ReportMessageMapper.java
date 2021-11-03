@@ -8,6 +8,9 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ReportMessageMapper {
 
@@ -21,6 +24,14 @@ public interface ReportMessageMapper {
      */
 
     @Mapping(source = "reportTemplate.reportCnts", target = "rptCnts")
+    @Mapping(source = "storeDTO.strNm", target = "storeNm")
+    @Mapping(source = "storeDTO.strType", target = "storeType")
+    @Mapping(source = "storeDTO.strX", target = "storeX")
+    @Mapping(source = "storeDTO.strY", target = "storeY")
+    @Mapping(source = "storeDTO.strNewAddr", target = "storeNewAddr")
+    @Mapping(source = "storeDTO.strOldAddr", target = "storeOldAddr")
+    @Mapping(source = "storeDTO.strDtlsAddr", target = "storeDtlsAddr")
+    @Mapping(source = "storeDTO.strTelNo", target = "storeTelNo")
     ReportMessageDTO toReportMessage(StoreDTO storeDTO, ReportTemplate reportTemplate);
 
 }
