@@ -20,17 +20,22 @@ repositories {
 }
 
 dependencies {
-	implementation files('libs/ojdbc6.jar')
+	// spring-retry dependencey 추가 (retry, aspects)
+	implementation 'org.springframework.retry:spring-retry:1.2.5.RELEASE'
+	implementation group: 'org.springframework', name: 'spring-aspects', version: '5.2.8.RELEASE'
+	//ojdbc6
+	implementation files('src/main/resources/libs/ojdbc6.jar')
+	// Spring boot Starter, mybatis
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	// Spring Boot Validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	// JSONsimple
+	// Json-simple
 	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
-    implementation 'junit:junit:4.13.1'
+	implementation 'junit:junit:4.13.1'
+	// MapStruct, Lombok
 	implementation "org.mapstruct:mapstruct:1.4.1.Final"
 	compileOnly 'org.projectlombok:lombok'
-	// runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
 	annotationProcessor 'org.projectlombok:lombok'
 	// MapStruct
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.1.Final'
