@@ -20,6 +20,22 @@ public class ConstantsConfiguration {
 
     @Value("${report.change-id.request}")
     private String requestChangeId;
+
+    @Value("${report.create-id.response}")
+    private String responseCreateId;
+
+    @Value("${report.send-stat.response}")
+    private String responseSendStat;
+
+    @Value("${report.change-id.response}")
+    private String responseChangeId;
+
+    @Value("${report.send-stat.error}")
+    private String errorSendStat;
+
+    @Value("${url.ext}")
+    private String extUrl;
+
 }
 
 

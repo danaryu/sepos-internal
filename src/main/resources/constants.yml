@@ -1,3 +1,4 @@
+# Report Log default
 report:
   create-id:
     request: makeRequestReport
@@ -9,3 +10,8 @@ report:
   change-id:
     request: makeRequestReport
     response: makeResponseReport
+
+# 요청 대상 url 정의
+url:
+  #knpa: "http://localhost:8080/hello"
+  ext: "http://localhost:8080/knpa/report"
